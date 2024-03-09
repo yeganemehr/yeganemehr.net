@@ -23,7 +23,7 @@ enableGitInfo = true
   colorScheme = "auto"
   hidecolorschemetoggle = false
 
-  commit = "https://github.com/luizdepra/hugo-coder/tree/"
+  commit = "https://github.com/yeganemehr/yeganemehr.net/tree"
 
   # customCSS = ["css/custom.css"]
   # customSCSS = ["scss/custom.scss"]
