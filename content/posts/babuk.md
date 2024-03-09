@@ -3,15 +3,15 @@ title: "Babuk Nightmare"
 date: 2023-11-01T07:07:07+01:00 
 ---
 
-Last week one of our vmware esxi servers stoped working.At first I notinced that my password is not working.   
-I put the server into the rescue mode and boot it into [RescueCd](https://www.system-rescue.org/).   
-After mounting VMFS partitions I saw that `vmdk` files renamed to `vmdk.babyk` and on that moment I knew why my password not working,
+Last week, one of our VMware ESXi servers stoped working.At first, I noticed that my password was not working.   
+I put the server into the rescue mode and booted it into [RescueCd](https://www.system-rescue.org/).   
+After mounting VMFS partitions, I saw that `vmdk` files were renamed to `vmdk.babyk`, and at that moment, I knew why my password not working —
 
 
 ## I was hacked!
 
 
-Alongside to babyk files, there was a file named "How To Restore Your Files.txt":
+Alongside the babyk files, there was a file named "How To Restore Your Files.txt":
 
 ```txt
 Your encrypted ID:
@@ -31,30 +31,30 @@ ablyteqotg@tutanota.com
 Warning: Please do not attempt to decrypt privately or make any changes to the server, otherwise we will no longer be responsible for the losses caused by this incidence
 ```
 
-So now it's obviuse that my data is encrypted and the only way to restore my data was to pay $100,000.   
-I had 2TB + 2 x 12TiB HDDs on this server but I had just one thing among my data which I care about.   
-There was a 12TiB disk that I running a [SeaweedFS](https://github.com/seaweedfs/seaweedfs) instance on it.    
-I use RDM to connect that pysical disk to my virtual machine for better performance.
+So now it's obvious that my data is encrypted, and the only way to restore it was to pay $100,000.   
+I had 2TB plus 2 x 12TiB HDDs on this server, but there was just one thing among my data that I cared about.   
+There was a 12TiB disk on which I was running a [SeaweedFS](https://github.com/seaweedfs/seaweedfs) instance.    
+I used RDM to connect that physical disk to my virtual machine for better performance.
 
-Immedetly I begun an negotition with the hacker and there is no luck. He demending $100,000 which I couldn't afford.
+Immediately, I began negotiations with the hacker, but there was no luck. He demanded $100,000, which I couldn't afford.
 
-After disappointing about the hacker, I began to research about the ransomware. After the first search I hit to a [vmware.com page](https://blogs.vmware.com/security/2022/10/esxi-targeting-ransomware-tactics-and-techniques-part-2.html) with a good info about it.
+After being disappointed by the hacker, I began to research about the ransomware. After the first search I came across a [vmware.com page](https://blogs.vmware.com/security/2022/10/esxi-targeting-ransomware-tactics-and-techniques-part-2.html) with a good information about it.
 
 ![Vmware info about Babuk](/images/babuk/vmware-info-babuk.png)
 
-Its turns out it's name is `Babuk` and [it's source code](https://github.com/Hildaboo/BabukRansomwareSourceCode/tree/main/esxi) is leaked. Suddenly some light of hopes begin to shine!
+It turns out its name is `Babuk`, and [its source code](https://github.com/Hildaboo/BabukRansomwareSourceCode/tree/main/esxi) is leaked. Suddenly, some light of hope begins to shine!
 
-In that github repository I found `ext/dec/main.cpp`.   
-So basiclly it has two function.
+In that Github repository, I found `ext/dec/main.cpp`.   
+So basiclly, it has two functions:
 
 	- void find_files_recursive(char* begin)
 	- void decrypt_file(char *path)
 
-the names are self-explainery.    
-I not caring about find_files_recursive and obvusly all of the decrypting done by `decrypt_file`.
+The names are self-explanatory.    
+I don't care about find_files_recursive, and obviously, all of the decrypting is done by `decrypt_file`.
 
-So it's read 32 bytes at the end of encrypted file and with using `m_priv` global variable and `curve25519` algo, some shared key will create.   
-With that shared key, decrypting was easy, I could my files back!
+So, it reads 32 bytes at the end of the encrypted file, and using the `m_priv` global variable and `curve25519` algorithm, a shared key will be created.   
+With that shared key, decrypting was easy; I could get my files back!
 
 ```c
 void decrypt_file(char* path) {
@@ -81,128 +81,130 @@ void decrypt_file(char* path) {
 }
 ```
 
-I already heard about `curve25519` but never really used it, I searched and read about it.   
-Even in those moment of losing 12TiB of data, I enjoyed the algo.
+I had already heard about `Curve25519` but never really used it. I searched and read about it. Even in those moments of losing 12TiB of data, I enjoyed the algorithm..
 
 ## X25519
 Here is the summary:   
-Mr evil hacker create a private key for himself from a random stream like /dev/urandom and save it into `hacker_private` variable.
-After that he call curve25519_donna with that private key and generate a public key and save it into `hacker_public` variable.
+Mr. evil hacker creates a private key for himself from a random stream like /dev/urandom and saves it into the `hacker_private` variable. After that, he calls `curve25519_donna()` with that private key and generates a public key, saving it into the `hacker_public` variable.
 
-When the Mr evil hacker attack to my server, for each file he does these steps:
-1. He creates a private key using a random stream as name that `file_private`.
-2. He pass that private key to `curve25519` and generate a public key `file_public`.
-3. Using curve25519 with his `hacker_public` and `file_private` creates a shared key names `file_shared`.
-4. Instancely he earse `file_private` from memory.
-5. Encrypt the file using `file_shared` key.
-6. Append `file_public` at the end of the file to persist it.
+When Mr. evil hacker attacks my server, for each file he follows these steps:
 
-After the evil received his ransom payment, he gives you a executable file containing his `hacker_private` key. This file does these steps to decrypt your files:
-1. Read 32 bytes of end the file and put it into `file_public` variable and truncate those bytes from your file.
-2. using `hacker_private` and `file_public` creates `file_shared`.
-3. Decrypt your file.
+1. He creates a private key using a random stream as the name, `file_private`.
+2. He passes that private key to `Curve25519` and generates a public key,`file_public`.
+3. Using curve25519 with his `hacker_public` and `file_private` creates a shared key named `file_shared`.
+4. Instantly, he erases `file_private` from memory.
+5. He encrypts the file using the `file_shared` key.
+6. He appends `file_public` at the end of the file to persist it.
 
-
-In that moment of excitment suddenly I felt hopeless because for decrypting my files I need Mr evil private key and he doesn't coopertive!
+After receiving his ransom payment, the evil hacker provides you with an executable file containing his `hacker_private`  key. This file follows these steps to decrypt your files:
+1. It reads 32 bytes from the end of the file and puts it into the `file_public` variable, then truncates those bytes from your file.
+2. Using `hacker_private` and `file_public`, it creates `file_shared`.
+3. It decrypts your file.
 
 
-Hours latter when I showing the `Babuk` encoder source code to my college, I saw a miracle.
-I found a condition!   
-In the condition hacker because of large size of vmdk files, limits his program to first 500MB of the disk.
+In that moment of excitement, suddenly I felt hopeless because I needed Mr. evil's private key to decrypt my files, and he wasn't cooperative!
+
+Hours later, when I showed the Babuk encoder source code to my colleague, I saw a miracle.   
+I found a condition!
+In this condition, the hacker limits his program to the first 500MB of the disk due to the large size of the VMDK files.
 
 ![Spongebob Squarepants Rainbow](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmliYzQ0MTNpcmZmbmJ0emp0bTFoNWtwbHd0c2hzcDN1OTNlbnh2NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SKGo6OYe24EBG/giphy.gif)
 
-Immedetly I ran fdisk to see what is going on my disk.
+Immediately, I ran fdisk to see what was on my disk.
 
-As I expected there is no parition table. Those kind of metadata stored on top the block storage and when 500MB of your disk encryped you cannot expact to these things work normally.
+As I expected, there was no partition table. Such metadata is stored on top of the block storage, and when 500MB of your disk is encrypted, you cannot expect these things to work normally.
 
-I still does not sure about the ransomware. Maybe the hacker modified the source code and removed that condition or raise the limit to a point that my data was not recoverable.   
-So in that rescue OS I installed `hexcurse` and start to traviase 12TiB of binary data.   
-After few moment of jebirush I found text and readable data!   
-That was a log file, part of [Certbot](https://github.com/certbot/certbot).
+I still wasn't sure about the ransomware. Maybe the hacker modified the source code and removed that condition or raised the limit to a point where my data was not recoverable.   
+So, in that rescue OS, I installed hexcurse and started to traverse 12TiB of binary data.   
+After a few moments of jebirush I found text and readable data!   
+It was a log file, part of [Certbot](https://github.com/certbot/certbot).
 
 ![Certbot Log](/images/babuk/certbot-log.jpg)
 
-So now I was certen that big part of my data was there but there is no partition table, there is no filesystem.
+So now I was certain that a big part of my data was there, but there was no partition table, no filesystem.
 
-I knew there is a lot of hours trying recovering my data and no-sleep nights but I did what I should to do.
+I knew there were a lot of hours ahead trying to recover my data and sleepless nights, but I did what I should do.
 
 ## Safety First
 
-So before anything I schucle a pysical access time with datacenter and headed to the datacenter.
-I depart both of my 12TiB hdds and came back to the office.
-Since these drives are in 3.5 inch form, I turn on my very old friend, A HP desktop computer with 4 sata 3 jack and enough supply power for both of those drives.
+So, before anything else, I scheduled a physical access time with the datacenter and headed there.  
+I detached both of my 12TiB HDDs and returned to the office.  
+Since these drives are in a 3.5-inch form factor, I turned to my very old friend, an HP desktop computer with 4 SATA 3 jacks and enough power supply for both of those drives.
 
 ![Two HDDs](/images/babuk/two-hdds.jpg)
 
-I download and mount debian 12 live iso into a usb stick and boot up the PC.
-using dd I backup my important drive to another drive
+I downloaded and mounted the Debian 12 live ISO onto a USB stick and booted up the PC.
+Using dd, I backed up my important drive to another drive,
 AND IT TOOK 30 HOURS TO COMPELETE.
 
-After that i power off the PC and disconnect the original disk and boot debian up again.
+After that, I powered off the PC, disconnected the original disk, and booted Debian up again.
 
 ## Partition Table Recovery
 
-So first thing first, I had to understand every level of storage to begin the process.
-ESXi saving data to the disk (RDM) directly but why when I access to VMFS volume it has two file?
+First things first, I had to understand every level of storage to begin the process.  
+ESXi saves data to the disk (RDM) directly, but why when I access the VMFS volume, it has two files?
 
-After a quick search i notinced that for every virtual disk, esxi creates a file descriptor containing some metadata about that vritual disk.   
-Actually first vmdk is the descriptor. mine was completely burnt. it's file size was less than 512MiB and there is no way to restore it.
-Based on the file size second file was a pointer to pysical drive.   
-But How Esxi save the data in this rmdp file? Is there any custom layout?   
-So With a quick search I released the answer is NO.
-If your .vmdk contains `-rdm` or `-flat` your virtual disk is raw image of disk.
+After a quick search, I noticed that for every virtual disk, ESXi creates a file descriptor containing some metadata about that virtual disk. Actually, the first VMDK is the descriptor. Mine was completely corrupted; its file size was less than 512MiB, and there was no way to restore it.  
+Based on the file size, the second file was a pointer to the physical drive. 
+But how does ESXi save the data in this RMDP file? Is there any custom layout?
 
-So my backup drive is bascally is broken drive that first 500MiB of top it is missing, including partition table.
+With a quick search, I realized the answer is NO. If your .vmdk contains -rdm or -flat, your virtual disk is a raw image of the disk.
 
-Because I didn't have any data about count and location of partitions I couldn't just create partition table using fdisk, If I had it would much easier.
 
-So after spending some hours searching I stop unon a utility named "testdisk".
-This tool has a command to analyze the disk and find find paritions using their filesystem fingerprint, It's genuis.
-So I begin to analyze the backup disk and after few minutes, vooolaaa! It found them!!
+So, my backup drive is basically a broken drive that is missing the first 500MiB at the top, including the partition table.
+
+Because I didn’t have any data about the count and location of partitions, I couldn't just create a partition table using fdisk. If I had, it would have been much easier.
+
+After spending some hours searching, I stumbled upon a utility named “testdisk”. This tool has a command to analyze the disk and find partitions using their filesystem fingerprint. Genius!
+
+I began to analyze the backup disk, and after a few minutes, voilà! It found them!!
 
 ![Testdisk analyze result](/images/babuk/testdisk-analyze-result.png)
 
 
 ## Ext4 Recovery
 
-So I gone a step forward, now I have partition table.
-First partition was /boot filesystem with no important data. You can always rebuild your /boot partition.
-The third was a swap partition and again no need to worry about.
-But my whole data was in the second one and becuase some inital and critical part of its filesystem was in the first 500MiB it was damaged.
+So, I took a step forward, and now I had a partition table.   
+The first partition was the /boot filesystem with no important data.
+You can always rebuild your /boot partition.
+The third was a swap partition, and again, there was no need to worry about it.
+But all my data was in the second one, and because some initial and critical parts of its filesystem were in the first 500MiB, it was damaged.
 
 
-So to be more specific, in very first blocks of every ext4 filesystem there are few things named `superblock`, `group descriptors` and `bit masks`. basiclly these blocks are holding information about the whole other blocks, inodes and data in filesystem... like a map.   
-The good news is ext4 backup these precious superblocks mutiple places in the partition so you can restore them if you lost the primary one.   
-Bad news is i didn't have superblock backup locations, I mean who does?!   
-Of course you can calculate them if you have "logical block size" and again I wasn't sure!   
-You should know at this point my server was down about 48 hours and I didn't have time to start over.
+To be more specific, in the very first blocks of every ext4 filesystem, there are a few things named superblock, group descriptors, and bit masks.
+Basically, these blocks hold information about the whole other blocks, inodes, and data in the filesystem, like a map.
 
-So agian I back to my new friend "testdisk" and it didn't let me down.
-Using "Superblock recovery" feature I was able to locate all my superblock copies.
+The good news is ext4 backs up these precious superblocks in multiple places in the partition so you can restore them if you lose the primary one.   
+The bad news is I didn’t have superblock backup locations. I mean, who does?!
+
+Of course, you can calculate them if you have the "logical block size," and again, I wasn't sure!   
+
+You should know at this point my server was down for about 48 hours, and I didn’t have time to start over.
+
+So, again, I went back to my new friend, “testdisk,” and it didn’t let me down. Using the “Superblock recovery” feature, I was able to locate all my superblock copies.
 
 ![Locating superblocks using Testdisk](/images/babuk/testdisk-superblocks.png)
 
-As you can see, testdisk suggested that by running `fsck` you can begin to fix the filesystem using a superblock backup.
-But it didn't mention for repairing a 12TiB parition how much memory you will need and hosntly I never knew!
-Every time i ran this command after few moments it'll killed by kernel for using too much memory.
+As you can see, testdisk suggested that by running fsck, you can begin to fix the filesystem using a superblock backup.
+But it didn’t mention how much memory you will need to repair a 12TiB partition, and honestly, I never knew!   
+Every time I ran this command, after a few moments, it would be killed by the kernel for using too much memory.
 
-I found a alternative: `e2fsck`   
-If you make a configuration file named `/etc/e2fsck.conf` and put a directory path for it's tempelory files it will use less memory.
+I found an alternative: `e2fsck`   
+If you make a configuration file named `/etc/e2fsck.conf` and put a directory path for its temporary files, it will use less memory.
 ```ini
 [scratch_files]
 directory = /var/cache/e2fsck
 ```
-Still it needs 16 GiB of ram which my old PC nor have and support and despritely make very big swap parition.
+Still, it needs 16 GiB of RAM, which my old PC neither has nor supports. Desperately, I made a very big swap partition.
 
 ![e2fsck memory usage](/images/babuk/e2fsck-memory-usage.jpg)
 
 And it took 24 LOOOONG hours to finish with no progress bar.
 
 
-But in the end It worth days of hardwork and i was able to access my files. Easy Peasy!
+But in the end, it was worth days of hard work, and I was able to access my files. Easy Peasy!
 
 ![Seaweedfs volume files](/images/babuk/seaweedfs-volume-files.jpg)
 
 
-So if you ever need my help about this nasty ransomware please don't hasitate to contact me.
+So if you ever need my help with this nasty ransomware, please don’t hesitate to contact me.
