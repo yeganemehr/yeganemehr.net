@@ -7,7 +7,7 @@ enableGitInfo = true
 
 [params]
   author = "Amir H. Yeganemehr"
-  info = "Full Stack DevOps and Magician"
+  info = "From Design to Deployment"
   description = "Yeganemehr's personal website"
   keywords = "blog,developer,personal"
   avatarurl = "/me.jpg"
