@@ -73,11 +73,19 @@ Work Experiences
 
 **Co-Founded and Led Growing Web Hosting Startup (CEO & CTO) - JeyServer.com (2014 - Present)**
 
-*   Spearheaded the launch and ongoing growth of JeyServer.com (2014), a web hosting provider, leading a talented team of 12 individuals. We currently support over 12,000 WordPress sites on a daily basis, highlighting our expertise in web hosting solutions.
+*   Spearheaded the launch and ongoing growth of [JeyServer.com ](https://www.jeyserver.com/)(2014), a web hosting provider, leading a talented team of 12 individuals. We currently support over 12,000 WordPress sites on a daily basis, highlighting our expertise in web hosting solutions.
 *   Developed a custom billing system (Jalno) replicating the functionality of WHMCS, ensuring a seamless customer experience.
 *   Established a robust Linux shared hosting platform by integrating cPanel and DirectAdmin with our in-house billing system, serving multiple corporate clients.
 *   Built an automated VPS provisioning system leveraging VMware ESXi servers, offering functionalities similar to SolusVM and AutoVM. Our solution empowers us to provide high-quality VPS and dedicated server rentals along with technical support to our corporate customers.
 
+**Full-Stack Developer (Contractor) - egerd.com (Apr-Oct 2022)**
+
+* Contracted as a Full-Stack Developer at [egerd.com](https://egerd.com), tasked with optimizing website performance and implementing efficient development practices.
+* Received projects with components written in Python (Django), JavaScript (Express) for backend, and Next.js for the frontend, without any documentation or support from previous developers.
+* Successfully optimized website performance, reducing load time from over 50 seconds to less than 3 seconds.
+* Dockerized the project for improved deployment and management.
+* Implemented CI/CD using GitHub Actions and extensively documented processes for future team members.
+* Streamlined server infrastructure, reducing resource requirements from a 32-core CPU, 2 NVMe disks, and 64 GB of RAM to a modest 4 GB RAM and 2 core setup, resulting in significant cost savings.
 
 **Project Lead and Developer - DChat (2012 - 2014)**
 
