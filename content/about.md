@@ -96,6 +96,16 @@ Work Experiences
 * Implemented CI/CD using GitHub Actions and extensively documented processes for future team members.
 * Streamlined server infrastructure, reducing resource requirements from a 32-core CPU, 2 NVMe disks, and 64 GB of RAM to a modest 4 GB RAM and 2 core setup, resulting in significant cost savings.
 
+**Full-Stack Developer (Contractor) - AroseIrani (2016 - 2018)**
+
+* Contracted with INAF Company to work on the AroseIrani.com project, a directory listing website for Local wedding-related businesses.
+* Developed the website using a custom PHP framework, HTML, CSS, and JavaScript.
+* Implemented a RESTful API and thoroughly documented it for Android developers.
+* Utilized MySQL for database management.
+* Developed a TelegramBot for administrative and notification purposes.
+* Designed and implemented a feature-rich admin panel for extensive website customization.
+* Utilized FFMPEG to add watermarks to videos and re-render them in different qualities for improved user experience.
+
 **Project Lead and Developer - DChat (2012 - 2014)**
 
 * Conceptualized and developed DChat, a Chatroom application from 2012 to 2014. Utilized PHP, jQuery, and MySQL to create a high-speed, efficient platform tailored for ultra-low speed connections. 
