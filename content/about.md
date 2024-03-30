@@ -77,3 +77,12 @@ Work Experiences
 *   Developed a custom billing system (Jalno) replicating the functionality of WHMCS, ensuring a seamless customer experience.
 *   Established a robust Linux shared hosting platform by integrating cPanel and DirectAdmin with our in-house billing system, serving multiple corporate clients.
 *   Built an automated VPS provisioning system leveraging VMware ESXi servers, offering functionalities similar to SolusVM and AutoVM. Our solution empowers us to provide high-quality VPS and dedicated server rentals along with technical support to our corporate customers.
+
+
+**Project Lead and Developer - DChat (2012 - 2014)**
+
+* Conceptualized and developed DChat, a Chatroom application from 2012 to 2014. Utilized PHP, jQuery, and MySQL to create a high-speed, efficient platform tailored for ultra-low speed connections. 
+* Managed deployment of over 500 instances of DChat, which garnered viral attention, serving more than 30,000 end users across +20 servers.
+* Developed rich features including public/private chats, stickers, file attachments, and robust admin functionalities.
+* Recognized the need for a custom billing system and engineered an exclusive application to manage chatrooms and import data from the legacy script "E-Chat". This billing system, also PHP-based, effectively managed all 23 servers.
+* Introduced a groundbreaking feature named "Feed", akin to modern-day Instagram, allowing users to post images, videos, text, and audio. Addressed storage limitations by implementing an object-storage solution similar to AWS S3.
