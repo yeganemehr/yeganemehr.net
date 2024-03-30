@@ -103,3 +103,37 @@ Work Experiences
 * Developed rich features including public/private chats, stickers, file attachments, and robust admin functionalities.
 * Recognized the need for a custom billing system and engineered an exclusive application to manage chatrooms and import data from the legacy script "E-Chat". This billing system, also PHP-based, effectively managed all 23 servers.
 * Introduced a groundbreaking feature named "Feed", akin to modern-day Instagram, allowing users to post images, videos, text, and audio. Addressed storage limitations by implementing an object-storage solution similar to AWS S3.
+
+Opensource Contributions
+----------------
+**SeaweedFS** _(golang)_:
+- PR [#4621](https://github.com/seaweedfs/seaweedfs/pull/4621): Unix Socket listener for S3 server
+- PR [#4907](https://github.com/seaweedfs/seaweedfs/pull/4907): add fs.mergeVolumes command into shell
+- PR [#4999](https://github.com/seaweedfs/seaweedfs/pull/4999): fs.mergeVolumes: Make a plan based on volumes size
+- PR [#5000](https://github.com/seaweedfs/seaweedfs/pull/5000): Fix shell 'help' for all commands
+- PR [#5003](https://github.com/seaweedfs/seaweedfs/pull/5003): fs.mergeVolumes: change dir to a named parameter
+
+**Badcow DNS** _(PHP)_:
+- PR [#105](https://github.com/Badcow/DNS/pull/105): Handle OPT records
+- PR [#106](https://github.com/Badcow/DNS/pull/106): Support EDNS
+
+**Typescript DefinitelyTyped** _(typescript)_:
+- PR [#16055](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/16055): Create definitions for jquery.growl
+
+**FlatLogic awesome-bootstrap-checkbox** _(js-css)_:
+- PR [#120](https://github.com/flatlogic/awesome-bootstrap-checkbox/pull/120): RTL Support
+
+**Laravel Swoole** _(PHP)_:
+- PR [#551](https://github.com/swooletw/laravel-swoole/pull/551): Handling null event in websockets
+- PR [#552](https://github.com/swooletw/laravel-swoole/pull/552): Fix laravel/framework version
+
+**PHPStan** _(PHP)_:
+- Issue [#7886](https://github.com/phpstan/phpstan/issues/7886): Class scoping problem when define $this using @var
+
+**SftpGo** _(golang)_:
+- PR [#1053](https://github.com/drakkan/sftpgo/pull/1053): Fix Empty directories for SeaweedFS
+
+**GoBackup** _(golang)_:
+- Issue [#208](https://github.com/gobackup/gobackup/issues/208): Indefying a fundemental issue causing huge disk uage.
+- PR [#209](https://github.com/gobackup/gobackup/pull/209): Merge archive with compressor
+- PR [#210](https://github.com/gobackup/gobackup/pull/210): Cleanup generated files after each step
