@@ -1,7 +1,7 @@
 ---
+title: "The Pragmatist"
 ---
-The Pragmatist
---------------
+
 
 Back-end development keeps me energized! Whether it's wielding the power of PHP (my go-to language!) or exploring the possibilities of GoLang, I'm always learning and pushing boundaries. Add DevOps and Linux management to the mix, and I'm in my happy place, ensuring smooth deployments and a well-oiled infrastructure.
 
