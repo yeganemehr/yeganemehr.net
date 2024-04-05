@@ -114,6 +114,14 @@ Work Experiences
 * Recognized the need for a custom billing system and engineered an exclusive application to manage chatrooms and import data from the legacy script "E-Chat". This billing system, also PHP-based, effectively managed all 23 servers.
 * Introduced a groundbreaking feature named "Feed", akin to modern-day Instagram, allowing users to post images, videos, text, and audio. Addressed storage limitations by implementing an object-storage solution similar to AWS S3.
 
+## Opensource Projects
+
+**Web-Shot** - A high-performance online screenshot service that captures webpages programmatically using a well-documented API. Built with Node.js, Nuxt.js, Prisma, and TypeScript for a robust and maintainable codebase. Developed in collaboration with the talented team at DNJ since December 2018.
+
+* Website: [web-shot.ir](https://web-shot.ir)
+* Repository: [dnj/web-shot](https://github.com/dnj/web-shot)
+
+
 Opensource Contributions
 ----------------
 **SeaweedFS** _(golang)_:
