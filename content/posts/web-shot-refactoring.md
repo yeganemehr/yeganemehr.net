@@ -20,11 +20,11 @@ Having wrestled with bundlers in the past, the prospect of significant time and 
 ## NuxtJS
 
 As a Vue.js fan, Nuxt.js, a full-stack framework with built-in server-side rendering (SSR), became my top choice. I utilized the Nuxt CLI to establish a new project and began development.
-Nuxt's server-side rendering hinges on a component called Nitro, previously part of Nuxt itself.
+Nuxt's server-side rendering hinges on a component called [Nitro](https://nitro.unjs.io/), previously part of Nuxt itself.
 
 Nitro acts as a standalone webserver for JavaScript runtimes like Node.js.
 
-I effortlessly integrated Prisma, Sharp, and Puppeteer to construct the application.
+I effortlessly integrated [Prisma](https://prisma.io/), [Sharp](https://sharp.pixelplumbing.com), and [Puppeteer](https://pptr.dev/) to construct the application.
 
 Nitro's documentation had some gaps, but I was able to find the info I needed with a little extra digging.
 
@@ -98,15 +98,15 @@ sequenceDiagram
 
 ### Error Handling
 
-Another backend hurdle involved Satori, a library used for generating error messages.
+Another backend hurdle involved [Satori](https://github.com/vercel/satori), a library used for generating error messages.
 Since WebShot serves screenshots directly within HTML tags or Javascript programs, traditional JSON responses wouldn't suffice.
 The errors needed to be embedded within the image itself.
 
 {{<image src="/images/web-shot-refactoring/chrome-like-error.png" alt="Chrome Like Error" >}}
 
 Satori, with its magic (the specifics of which remain a mystery to me!), creates error messages mimicking Google Chrome's style.
-As I was using a Vue-based framework, I opted for v-satori, a Vue adapter for Satori.
-v-satori leverages Vue's built-in SSR to transpile components into HTML, which Satori-html then processes.
+As I was using a Vue-based framework, I opted for [v-satori](https://github.com/wobsoriano/v-satori), a Vue adapter for Satori.
+v-satori leverages Vue's built-in SSR to transpile components into HTML, which [satori-html](https://github.com/natemoo-re/satori-html) then processes.
 
 {{<mermaid>}}
 flowchart LR
@@ -117,9 +117,9 @@ flowchart LR
 A challenge arose when incorporating local images. To display a local image, its content needs base64 encoding and insertion into the <img> tag's src attribute. 
 Otherwise satori going to fetch the image from the internet.
 The problem was importing an image in nuxt is not easily possible.
-Nuxt relays on `<NuxtImage />` component for handling images and this was a edge sitution which was not support.
+Nuxt relays on [`<NuxtImage />`](https://image.nuxt.com/usage/nuxt-img) component for handling images and this was a edge sitution which was not support.
 
-Through investigation, I discovered Nuxt utilizes Vite for the frontend and Rollup for Nitro (the backend engine).
+Through investigation, I discovered Nuxt utilizes Vite for the frontend and [Rollup](https://rollupjs.org/) for Nitro (the backend engine).
 Both configurations can be customized within the `nuxt.config.ts` file.
 Fortunately, Rollup offers a plugin named @rollup/plugin-image that allows image importing as base64 strings.
 
