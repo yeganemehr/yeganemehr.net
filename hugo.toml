@@ -30,6 +30,9 @@ enableRobotsTXT = true
   # customSCSS = ["scss/custom.scss"]
   # customJS = ["js/custom.js"]
 
+[params.telegram]
+  siteID = "6r27trhZ"
+
 [taxonomies]
   category = "categories"
   series = "series"
@@ -62,3 +65,8 @@ enableRobotsTXT = true
   name = "About"
   weight = 2
   url = "about/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
