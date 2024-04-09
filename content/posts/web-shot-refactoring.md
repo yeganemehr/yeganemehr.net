@@ -1,7 +1,6 @@
 ---
 title: "WebShot Refactoring"
-date: 2024-04-09T20:22:00+01:00
-draft: false
+date: 2024-04-09T19:57:00+01:00
 ---
 
 
