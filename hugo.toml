@@ -5,6 +5,8 @@ theme = 'hugo-coder'
 enableGitInfo = true
 enableRobotsTXT = true
 
+[pagination]
+pagerSize = 6
 
 [params]
   author = "Amir H. Yeganemehr"
