@@ -35,6 +35,20 @@
             {{ end }}
           {{ end }}
         {{ end }}
+        <li class="navigation-item navigation-item-dropdown">
+          <button>
+            <i class="fa fa-download"></i> CV
+          </button>
+          <div class="dropdown-content">
+            <ul>
+              {{ range .Site.Params.Resume }}
+              <li>
+                <a href="{{ .url }}">{{ .title }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </li>
       </ul>
     {{ end }}
   </section>

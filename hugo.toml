@@ -35,6 +35,14 @@ pagerSize = 6
 [params.telegram]
   siteID = "6r27trhZ"
 
+[[params.resume]]
+  title = "As a PHP Developer"
+  url = "https://github.com/yeganemehr/resume/releases/latest/download/as-php-developer.pdf"
+
+[[params.resume]]
+  title = "As a JS Developer"
+  url = "https://github.com/yeganemehr/resume/releases/latest/download/as-js-developer.pdf"
+
 [taxonomies]
   category = "categories"
   series = "series"
