@@ -71,25 +71,32 @@ Technical Skills
 Work Experiences
 ----------------
 
-**Co-Founded and Led Growing Web Hosting Startup (CEO & CTO) - JeyServer.com (2014 - Present)**
+**Senior PHP Developer - [Innoscripta SE](https://innoscripta.com) (Jan - Jun 2025)**
 
-*   Spearheaded the launch and ongoing growth of [JeyServer.com ](https://www.jeyserver.com/)(2014), a web hosting provider, leading a talented team of 12 individuals. We currently support over 12,000 WordPress sites on a daily basis, highlighting our expertise in web hosting solutions.
+*   Upgraded a Laravel 9 application running on PHP 8.0 (FPM + Nginx) to Laravel 12 on PHP 8.4 using RoadRunner.
+*   Achieved a **1,743%** performance boost, increasing throughput from **96 req/sec** to **1,770 req/sec** through deep architectural and runtime optimizations.
+*   Migrated legacy data from three separate databases into a single, centralized service, improving data consistency and simplifying future integrations.
+*   Followed **TDD** and clean modular design practices, developing internal PHP packages for reuse across multiple microservices.
+
+**Co-Founded and Led Growing Web Hosting Startup (CEO & CTO) - [JeyServer](https://www.jeyserver.com/) (2014 - Present)**
+
+*   Spearheaded the launch and ongoing growth of JeyServer(2014), a web hosting provider, leading a talented team of 12 individuals. We currently support over 12,000 WordPress sites on a daily basis, highlighting our expertise in web hosting solutions.
 *   Developed a custom billing system (Jalno) replicating the functionality of WHMCS, ensuring a seamless customer experience.
 *   Established a robust Linux shared hosting platform by integrating cPanel and DirectAdmin with our in-house billing system, serving multiple corporate clients.
 *   Built an automated VPS provisioning system leveraging VMware ESXi servers, offering functionalities similar to SolusVM and AutoVM. Our solution empowers us to provide high-quality VPS and dedicated server rentals along with technical support to our corporate customers.
 
-**IOT Full-Stack Software Developer (Contractor) - Hinics (Apr - Nov 2023)**
+**IOT Full-Stack Software Developer (Contractor) - [Hinics](https://www.hinics.com/) (Apr - Nov 2023)**
 
-- Collaborated with [Hinics](https://www.hinics.com/), an electronics company, to develop a smart and internet-connected relay capable of controlling other devices based on various conditions such as time, temperature, humidity, and manual actions.
+- Collaborated with Hinics, an electronics company, to develop a smart and internet-connected relay capable of controlling other devices based on various conditions such as time, temperature, humidity, and manual actions.
 - Designed the device using ESP8266 and created a mobile app for device management via WiFi-Direct, internet, or SMS.
 - Developed an online dashboard for device owners to monitor and manage their devices, with additional support for sales and support teams.
 - Wrote ESP8266 firmware using modern C++ code and contributed [some libraries](https://registry.platformio.org/search?q=owner%3Ayeganemehr) to the PlatformIO repository as open source.
 - Developed the mobile application using Vue.js and Cordova, and server backend using Swoole and Laravel to create both RESTful API and a Protobuf-based websocket API.
 - Integrated SMS800 for receiving commands from the app and sending responses.
 
-**Full-Stack Developer (Contractor) - Egerd (Apr - Oct 2022)**
+**Full-Stack Developer (Contractor) - [Egerd](https://egerd.com) (Apr - Oct 2022)**
 
-* Contracted as a Full-Stack Developer at [Egerd](https://egerd.com), tasked with optimizing website performance and implementing efficient development practices.
+* Contracted as a Full-Stack Developer at Egerd, tasked with optimizing website performance and implementing efficient development practices.
 * Received projects with components written in Python (Django), JavaScript (Express) for backend, and Next.js for the frontend, without any documentation or support from previous developers.
 * Successfully optimized website performance, reducing load time from over 50 seconds to less than 3 seconds.
 * Dockerized the project for improved deployment and management.
