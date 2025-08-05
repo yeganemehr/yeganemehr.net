@@ -1,6 +1,12 @@
 {{ $src := .Get "src" }}
+{{ $darkSrc := .Get "dark-src" }}
 {{ $alt := .Get "alt" }}
 
 <div class="text-center" style="text-align: center;">
-	<img src="{{ $src }}" alt="{{ $alt }}" decoding="async" />
+	{{ if $darkSrc }}
+		<img src="{{ $darkSrc }}" alt="{{ $alt }}" class="image-dark" decoding="async">
+		<img src="{{ $src }}" alt="{{ $alt }}" class="image-light" decoding="async">
+	{{ else }}
+		<img src="{{ $src }}" alt="{{ $alt }}" decoding="async">
+	{{end}}
 </div>
